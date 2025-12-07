@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Island+Moments&display=swap');
+
+:root{
+    --primary-color: #8f0f73;
+    --secondary-color: #d6375d;
+    --heading-color: #0b2727;
+    --text-color: #6e7074;
+    --font-name: "Montserrat", sans-serif;
+    --subtitle-font-name: "Island Moments", cursive;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s linear;
+}
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+body {
+    font-family: var(--font-name);
+}
+a{
+    color: unset;
+}
+ul {
+    list-style: none;
+}  
+.primary__btn{
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    color: white;
+    font-size: 1.6rem;
+    background: var(--secondary-color);
+    cursor: pointer;
+    border-radius: 2.5rem;
+}
+.secondary__btn{
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    color: var(--secondary-color);
+    font-size: 1.6rem;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 2.5rem;
+}
+
+/*-------------------------------------- Media Queries -------------------------------*/
+
+@media only screen and (max-width:991px){
+    html{
+        font-size: 55%;
+    }
+}
+@media only screen and (max-width:450px){
+    html{
+        font-size: 50%;
+    }
+}
+@media only screen and (max-width:370px){
+    html{
+        font-size: 40%;
+    }
+}

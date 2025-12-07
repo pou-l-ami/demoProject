@@ -1,0 +1,27 @@
+.event-details-card {
+  padding: 2rem;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ffe2ec;
+}
+
+.event-details-card h2 {
+  margin-bottom: 0.5rem;
+  color: #ff4b7d;
+}
+
+.details-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.details-list {
+  margin: 1rem 0 1.3rem;
+  padding-left: 1.2rem;
+  color: #555;
+}

@@ -1,0 +1,63 @@
+.user-dash {
+  padding: 4rem 1rem 5rem;
+  background: #fff7fa;
+}
+
+.user-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ffe2ec;
+  text-align: center;
+}
+
+.user-card h2 {
+  margin-bottom: 0.4rem;
+  color: #ff4b7d;
+}
+
+.user-card p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.user-links {
+  margin-top: 1.3rem;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.user-links a {
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: #ff4b7d;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.user-page {
+  padding: 3rem 1rem 5rem;
+  background: #fff7fa;
+}
+
+.info-text {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 0.4rem;
+}
+.info-text.error {
+  color: #c62828;
+}
+
+.user-page {
+  padding: 3rem 1rem 5rem;
+  background: #fff7fa;
+  min-height: calc(100vh - 200px);
+}

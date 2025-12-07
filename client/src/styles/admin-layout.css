@@ -1,0 +1,95 @@
+/* src/styles/admin-layout.css */
+
+.admin-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: calc(100vh - 80px); /* assuming header ~80px */
+  background: #fdf2f8;
+}
+
+/* LEFT SIDEBAR */
+.admin-sidebar {
+  background: linear-gradient(180deg, #ff4b7d, #ff7aa2);
+  color: #fff;
+  padding: 1.8rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.admin-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #fff;
+  opacity: 0.9;
+}
+
+.logo-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.logo-sub {
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.admin-nav a {
+  color: #ffeaf3;
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.admin-nav a:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateX(2px);
+}
+
+.admin-nav a.active {
+  background: #ffffff;
+  color: #ff4b7d;
+}
+
+/* MAIN PANEL */
+.admin-main {
+  padding: 1.8rem 2rem 2.5rem;
+  background: radial-gradient(circle at top left, #ffe4ee, #fff);
+  overflow-y: auto;
+}
+@media (max-width: 900px) {
+  .admin-shell {
+    grid-template-columns: 1fr;
+  }
+  .admin-sidebar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.4rem;
+  }
+  .admin-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .admin-main {
+    padding: 1.4rem 1rem 2rem;
+  }
+}
+
