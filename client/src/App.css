@@ -5,10 +5,24 @@
     --primary-color: #8f0f73;
     --secondary-color: #d6375d;
     --heading-color: #0b2727;
-    --text-color: #6e7074;
+    --text-color: #050506;
     --font-name: "Montserrat", sans-serif;
     --subtitle-font-name: "Island Moments", cursive;
 }
+/* Ensure page content doesn't hide under header */
+body {
+  padding-top: 90px;
+}
+header.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -68,4 +82,29 @@ ul {
     html{
         font-size: 40%;
     }
+}
+/* ---------- Global subtitle style ---------- */
+:root {
+  --section-subtitle-color: #000000;       /* pure black */
+  --section-subtitle-size: 1.05rem;       /* a bit bigger */
+}
+
+/* Generic class to reuse everywhere */
+.section-subtitle,
+.team-subtitle,
+.about-subtitle {
+  color: var(--section-subtitle-color);
+  font-size: var(--section-subtitle-size);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+
+/* Optional: make it slightly smaller on very small screens */
+@media (max-width: 600px) {
+  .section-subtitle,
+  .team-subtitle,
+  .about-subtitle {
+    font-size: 0.98rem;
+  }
 }

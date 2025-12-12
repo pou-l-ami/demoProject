@@ -35,12 +35,12 @@ const EventCard = ({ event }) => {
                     </span>
                 </div>
 
-                <div className="card__bottom">
+                {/* <div className="card__bottom">
                     <h5>${price}<span> /per person</span></h5>
                     <button className="btn booking__btn">
                         <Link to={`/events/${_id}`}> Book now </Link>
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

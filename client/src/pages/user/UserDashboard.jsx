@@ -1,27 +1,36 @@
+// // client/src/pages/user/UserDashboard.jsx
+// // client/src/pages/user/UserDashboard.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/user-dashboard.css";
 
 const UserDashboard = () => {
-  let userName = "Guest";
-  try {
-    const raw = localStorage.getItem("auth");
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (parsed.user?.username) userName = parsed.user.username;
-    }
-  } catch {}
-
   return (
-    <section className="user-dash">
-      <div className="user-card">
-        <h2>Welcome, {userName} 👋</h2>
-        <p>Manage your bookings and payments from one place.</p>
+    <section className="user-dashboard">
+      <div className="dashboard-container">
+        
+        <h2>Welcome </h2>
+        <p className="dashboard-subtitle">
+          Manage your bookings, payments and cart activity.
+        </p>
 
-        <div className="user-links">
-          <Link to="/user/bookings">My Bookings</Link>
-          <Link to="/user/payments">My Payments</Link>
+        <div className="dashboard-cards">
+          <Link to="/user/bookings" className="dash-card">
+            <h3>My Bookings</h3>
+            <p>View and manage event bookings</p>
+          </Link>
+
+          <Link to="/user/payments" className="dash-card">
+            <h3>My Payments</h3>
+            <p>Invoices & transaction details</p>
+          </Link>
+
+          <Link to="/buy-products" className="dash-card">
+            <h3>Buy / Rent Products</h3>
+            <p>Checkout and track product orders</p>
+          </Link>
         </div>
+
       </div>
     </section>
   );

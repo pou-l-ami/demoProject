@@ -1,3 +1,4 @@
+// client/src/router/Routers.js
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -11,6 +12,7 @@ import Notification from "../pages/Notification";
 import SearchResultList from "../pages/SearchResultList";
 import Gallery from "../pages/Gallery";
 import Team from "../pages/Team";
+import BuyProducts from "../pages/user/BuyProducts.jsx";
 
 import AdminLayout from "../pages/admin/AdminLayout";
 import AdminDashboard from "../pages/admin/AdminDashboard";
@@ -19,7 +21,6 @@ import ViewPayments from "../pages/admin/ViewPayments";
 import EditStock from "../pages/admin/EditStock";
 import Report from "../pages/admin/Report";
 import Notifications from "../pages/admin/Notifications";
-import Welcome from "../pages/admin/Welcome";
 
 import UserDashboard from "../pages/user/UserDashboard";
 import MyBookings from "../pages/user/MyBookings";
@@ -41,6 +42,16 @@ const Routers = () => {
       <Route path="/events/:id" element={<EventDetails />} />
       <Route path="/events/search" element={<SearchResultList />} />
       <Route path="/notification" element={<Notification />} />
+
+      {/* ✅ Buy Products – user must be logged in (any role) */}
+      <Route
+        path="/buy-products"
+        element={
+          <ProtectedRoute>
+            <BuyProducts />
+          </ProtectedRoute>
+        }
+      />
 
       {/* USER DASHBOARD */}
       <Route
@@ -77,18 +88,18 @@ const Routers = () => {
           </ProtectedRoute>
         }
       >
-        {/* index route */}
-         <Route index element={<AdminDashboard />} />
-  <Route path="dashboard" element={<AdminDashboard />} />
-  <Route path="bookings" element={<ViewBookings />} />
-  <Route path="payments" element={<ViewPayments />} />
-  <Route path="stock" element={<EditStock />} />
-  <Route path="report" element={<Report />} />
-  <Route path="notifications" element={<Notifications />} />
-</Route>
+        <Route index element={<AdminDashboard />} />
+        <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="bookings" element={<ViewBookings />} />
+        <Route path="payments" element={<ViewPayments />} />
+        <Route path="stock" element={<EditStock />} />
+        <Route path="report" element={<Report />} />
+        <Route path="notifications" element={<Notifications />} />
+      </Route>
     </Routes>
   );
 };
 
 export default Routers;
+
 

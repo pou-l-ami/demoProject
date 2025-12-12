@@ -1,5 +1,6 @@
+// client/src/router/ProtectedRoute.jsx
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 const getAuth = () => {
   try {
@@ -11,17 +12,24 @@ const getAuth = () => {
 };
 
 export const ProtectedRoute = ({ children, allowRole }) => {
+  const location = useLocation();
   const auth = getAuth();
 
+  // not logged in → go to login, remember where user came from
   if (!auth || !auth.token) {
-    return <Navigate to="/login" replace />;
+    return (
+      <Navigate
+        to="/login"
+        state={{ from: location }}
+        replace
+      />
+    );
   }
 
+  // logged in but wrong role
   if (allowRole && auth.role !== allowRole) {
-    // logged in but wrong role
     return <Navigate to="/home" replace />;
   }
 
   return children;
 };
-

@@ -1,0 +1,105 @@
+/* MAIN HEADER BAR */
+.header {
+  position: fixed;          /* stay at top while scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #ffffff;
+  padding: 12px 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* LOGO */
+.navbar__logo img {
+  height: 48px;
+}
+
+/* NAV LINKS */
+.navbar__links ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__links__item a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.navbar__links__item a.active__link,
+.navbar__links__item a:hover {
+  color: #e91e63;
+}
+
+/* RIGHT SIDE BUTTONS (Login / Register / Logout) */
+.navbar__right__btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar__right__btns a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Username text when logged in */
+.navbar__user__name {
+  margin-right: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Make logout look neat */
+.navbar__right__btns .btn {
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+/* MENU BUTTON (for mobile) – hidden on desktop */
+.menu-btn {
+  display: none;
+}
+
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 20px;
+  }
+
+  .menu-btn {
+    display: block;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .navbar__links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    display: none;
+    flex-direction: column;
+    padding: 12px 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar__links.active {
+    display: flex;
+  }
+
+  .navbar__links ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

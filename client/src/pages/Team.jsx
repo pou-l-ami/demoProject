@@ -1,3 +1,4 @@
+// src/pages/Team.jsx  (or wherever your Team page lives)
 import React from "react";
 import "../styles/team.css";
 
@@ -5,42 +6,46 @@ const teamMembers = [
   {
     name: "Evenza",
     role: "Founder & Lead Planner",
-    bio: "Passionate about creating memorable experiences and flawless events.",
+    tagline:
+      "Passionate about creating memorable experiences and flawless events.",
+    initial: "E",
   },
-  // {
-  //   name: "Poulami Acharya",
-  //   role: "Full-Stack Developer",
-  //   bio: "Builds and maintains the event booking platform and integrations.",
-  // },
-  // {
-  //   name: "",
-  //   role: "Creative Designer",
-  //   bio: "Designs branding, visuals and themes for all our events.",
-  // },
+  // you can add more members here later
 ];
 
 const Team = () => {
   return (
-    <section className="page team-page">
-      <div className="page-inner">
-        <div className="page-header">
-          <h1>Our Team</h1>
-          <p>
-            Meet the people who work behind the scenes to make every event
-            special.
+    <section className="team-section">
+      <div className="team-container">
+        <div className="team-header">
+          <p className="team-badge">Our Team</p>
+          <h2 className="team-title">
+            The People Behind Your <span>Perfect Events</span>
+          </h2>
+          <p className="team-subtitle">
+            Meet the faces who plan, design and manage unforgettable
+            celebrations for you.
           </p>
         </div>
 
         <div className="team-grid">
           {teamMembers.map((member, index) => (
-            <div key={index} className="team-card">
-              <div className="avatar-placeholder">
-                {member.name.charAt(0)}
+            <article className="team-card" key={index}>
+              <div className="team-avatar-wrapper">
+                <div className="team-avatar">{member.initial}</div>
+                <div className="avatar-glow"></div>
               </div>
-              <h3>{member.name}</h3>
-              <p className="team-role">{member.role}</p>
-              <p className="team-bio">{member.bio}</p>
-            </div>
+
+              <h3 className="member-name">{member.name}</h3>
+              <p className="member-role">{member.role}</p>
+              <p className="member-tagline">{member.tagline}</p>
+
+              <div className="member-meta">
+                <span className="member-pill">Event Strategy</span>
+                <span className="member-pill">Client Experience</span>
+                <span className="member-pill">Design</span>
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -49,4 +54,3 @@ const Team = () => {
 };
 
 export default Team;
-

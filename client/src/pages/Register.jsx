@@ -68,7 +68,7 @@ const Register = () => {
           <div className="auth-left">
             <h2 className="auth-title">Create An Account</h2>
             <p className="auth-subtitle">
-              Join our Events App to explore exciting events, manage bookings
+              Join our Evenza to explore exciting events, manage bookings
               and stay updated.
             </p>
 
@@ -140,7 +140,7 @@ const Register = () => {
           </div>
 
           <div className="auth-right">
-            <h3>Welcome To Events App 🎉</h3>
+            <h3>Welcome To Evenza 🎉</h3>
             <p>
               Discover curated events, manage your bookings and get notified
               about everything happening around you. Let’s make your moments

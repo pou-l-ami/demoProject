@@ -1,72 +1,79 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-import userRoute from './routes/users.js'
-import eventRoute from './routes/events.js'
-import reviewRoute from './routes/reviews.js'
-import bookingRoute from './routes/bookings.js'
-import timeslotRoute from './routes/timeslots.js'
-import authRoute from './routes/auth.js'
+import userRoute from './routes/users.js';
+import eventRoute from './routes/events.js';
+import reviewRoute from './routes/reviews.js';
+import bookingRoute from './routes/bookings.js';
+import timeslotRoute from './routes/timeslots.js';
+import authRoute from './routes/auth.js';
+import productsRoute from './routes/products.js';
+import cartRoute from './routes/cart.js';
+import ordersRoute from "./routes/orders.js";
+import paymentsRoute from "./routes/payments.js";
+dotenv.config();
 
-dotenv.config()
+const app = express();
+const portNo = process.env.PORTNO || 8000;
 
-const app = express()
-const portNo = process.env.PORTNO || 8000
+// 🔹 ES-module __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-//setting cors middleware
+// CORS
 const corsOptions = {
-    origin:true,
-    credentials:true
-}
+  origin: true,
+  credentials: true,
+};
 
-//database connection
-const connect = async()=>{
-    try{
-        await mongoose.connect(process.env.MONGODB_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        })
-        console.log("Mongodb Database Connected Succesfully")
-    }catch(error){
-        console.log("Mongodb Database Connection Failed")
-    }
-}
+// connect DB
+const connect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Mongodb Database Connected Succesfully');
+  } catch (error) {
+    console.log('Mongodb Database Connection Failed');
+  }
+};
 
-//middlewares
-app.use(express.json())
-app.use(cors(corsOptions))
-app.use(cookieParser())
+// middlewares
+app.use(express.json());
+app.use(cors(corsOptions));
+app.use(cookieParser());
 
-//routes
-app.get('/', (req,res)=>{
-    res.send('Api working succesfully')
-})
+// ✅ API routes
+app.use('/api/products', productsRoute);
+app.use('/api/cart', cartRoute);
+app.use("/api/orders", ordersRoute);
+// ✅ serve product images from server/product-images
+app.use(
+  '/product-images',
+  express.static(path.join(__dirname, 'product-images'))
+);
 
-//setting route for Authentication
-app.use('/api/v1/auth', authRoute)
+// test route
+app.get('/', (req, res) => {
+  res.send('Api working succesfully');
+});
 
-//setting route for User
-app.use('/api/v1/users', userRoute)
-
-//setting route for Event
-app.use('/api/v1/events', eventRoute)
-
-//setting route for Review
-app.use('/api/v1/review', reviewRoute)
-
-//setting route for Booking
-app.use('/api/v1/booking', bookingRoute)
-
-//setting route for Timeslot
-app.use('/api/v1/timeslot', timeslotRoute)
-
-
-
-//starting the server
-app.listen(portNo, (err)=>{
-    connect()
-    console.log('Server listening on port No '+portNo)
-})
+// v1 routes
+app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/users', userRoute);
+app.use('/api/v1/events', eventRoute);
+app.use('/api/v1/review', reviewRoute);
+app.use('/api/v1/booking', bookingRoute);
+app.use('/api/v1/timeslot', timeslotRoute);
+app.use("/api/v1/payments", paymentsRoute);
+// start server
+app.listen(portNo, () => {
+  connect();
+  console.log('Server listening on port No ' + portNo);
+});

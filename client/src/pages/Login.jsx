@@ -1,5 +1,6 @@
+// client/src/pages/Login.jsx
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../styles/login.css";
 import loginImg from "../assets/images/login.png";
@@ -8,12 +9,16 @@ import userIcon from "../assets/images/user.png";
 const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // page user wanted before being redirected to login
+  const from = location.state?.from?.pathname;
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -29,7 +34,7 @@ const Login = () => {
         "http://localhost:8000/api/v1/auth/login",
         {
           email: credentials.email,
-          password: credentials.password,
+          password: credentials.password
         },
         { withCredentials: true }
       );
@@ -42,18 +47,22 @@ const Login = () => {
         JSON.stringify({
           token: res.data.token,
           role: res.data.role,
-          user: res.data.data,
+          user: res.data.data
         })
       );
 
       setMsg("Login successful! Redirecting...");
 
-      // ⬇️ IMPORTANT: go to /admin or /user based on role
+      // default redirect based on role
+      let defaultPath = "/user";
       if (res.data.role === "admin") {
-        navigate("/admin", { replace: true });
-      } else {
-        navigate("/user", { replace: true });
+        defaultPath = "/admin";
       }
+
+      // if user was redirected from a protected page (e.g. /buy-products), go back there
+      const target = from || defaultPath;
+
+      navigate(target, { replace: true });
     } catch (err) {
       console.error("LOGIN ERROR:", err);
       const backendMsg = err.response?.data?.message;

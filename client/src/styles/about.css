@@ -1,42 +1,164 @@
-.page {
-  padding: 4rem 1rem 5rem;
-  background-color: #fff;
+/* src/pages/About.css */
+
+.about-section {
+  background: linear-gradient(180deg, #ffffff 0%, #fff5f9 100%);
+  padding: 5rem 1.5rem 4.5rem;
 }
 
-.page-inner {
-  max-width: 1100px;
+.about-container {
+  max-width: 1150px;
   margin: 0 auto;
 }
 
-.page-header {
-  margin-bottom: 2rem;
+/* header */
+.about-header {
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  animation: fadeInDown 0.6s ease-out;
 }
 
-.page-header h1 {
-  font-size: 2rem;
-  color: #ff4b7d;
-  margin-bottom: 0.4rem;
+.about-badge {
+  display: inline-block;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  background: #ffe6f0;
+  color: #ff4b7b;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
-.page-header p {
-  color: #666;
-  font-size: 0.98rem;
+.about-title {
+  margin-top: 0.9rem;
+  font-size: 2.1rem;
+  color: #222132;
+  font-weight: 700;
 }
 
+.about-title span {
+  color: #ff4b7b;
+}
+
+.about-subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #7a7a90;
+}
+
+/* cards */
 .about-grid {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.8rem;
+  margin-bottom: 2.8rem;
 }
 
 .about-card {
-  padding: 1.5rem;
-  border-radius: 16px;
-  background: #fff7fa;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+  position: relative;
+  padding: 1.8rem 1.6rem;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(255, 100, 150, 0.12);
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top, #ffe1f1, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
 .about-card h3 {
-  margin-bottom: 0.6rem;
-  color: #ff4b7d;
+  position: relative;
+  margin-bottom: 0.7rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ff4b7b;
 }
+
+.about-card p {
+  position: relative;
+  font-size: 0.92rem;
+  color: #5e5e76;
+  line-height: 1.6;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(255, 90, 145, 0.2);
+}
+
+.about-card:hover::before {
+  opacity: 1;
+}
+
+/* stats */
+.about-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff4b7b;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b8ba0;
+}
+
+/* responsive */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .about-section {
+    padding-top: 4rem;
+  }
+
+  .about-title {
+    font-size: 1.7rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card {
+    padding: 1.6rem 1.4rem;
+  }
+}
+
+/* reuse animations from Team if you want */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

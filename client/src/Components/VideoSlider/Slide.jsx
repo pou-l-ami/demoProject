@@ -9,7 +9,7 @@ const Slide = ({ title, description, videoSrc, active }) => {
         <div className="content">
           <h3>{title}</h3>
           <p>{description}</p>
-          <Button className='btn primary__btn'><Link to='/'>Learn More</Link></Button>
+          {/* <Button className='btn primary__btn'><Link to='/'>Learn More</Link></Button> */}
         </div>
         <video src={videoSrc} muted autoPlay loop></video>
       </div>

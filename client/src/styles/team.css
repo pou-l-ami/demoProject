@@ -1,38 +1,212 @@
-.team-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+/* src/pages/Team.css */
+
+.team-section {
+  width: 100%;
+  background: radial-gradient(circle at top, #ffe4f0 0, #ffffff 40%, #ffffff 100%);
+  padding: 5rem 1.5rem 4rem;
 }
 
-.team-card {
-  padding: 1.6rem;
-  border-radius: 18px;
-  background: #ffffff;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.05);
+.team-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.team-header {
   text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.7s ease-out;
 }
 
-.avatar-placeholder {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 0.8rem;
-  border-radius: 50%;
-  background: #ffe2ec;
-  color: #ff4b7d;
+.team-badge {
+  display: inline-block;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #ffe6f0;
+  color: #ff4b7b;
+  font-weight: 600;
+}
+
+.team-title {
+  margin-top: 0.9rem;
+  font-size: 2.1rem;
+  color: #222132;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.team-title span {
+  color: #ff4b7b;
+}
+
+.team-subtitle {
+  margin-top: 0.5rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.95rem;
+  color: #7a7a90;
+}
+
+/* center the card section nicely on the page */
+.team-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+}
+
+/* card */
+.team-card {
+  position: relative;
+  width: min(540px, 100%);
+  padding: 2.5rem 2rem 2rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 22px 60px rgba(255, 76, 122, 0.15);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  animation: fadeInUp 0.7s ease-out;
+}
+
+.team-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ff9ac5, #ffd1e5);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 28px 70px rgba(255, 76, 122, 0.25);
+}
+
+.team-card:hover::before {
+  opacity: 0.11;
+}
+
+/* avatar */
+.team-avatar-wrapper {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.team-avatar {
+  margin: 0 auto;
+  width: 90px;
+  height: 90px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff4b7b, #ff8fb8);
+  color: #fff;
+  font-size: 2.4rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  box-shadow: 0 12px 28px rgba(255, 75, 123, 0.45);
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 18px;
+  background: radial-gradient(circle, rgba(255, 75, 123, 0.4), transparent 70%);
+  filter: blur(8px);
+  opacity: 0.8;
+}
+
+/* text */
+.member-name {
   font-size: 1.4rem;
+  font-weight: 700;
+  color: #252538;
+  margin-bottom: 0.15rem;
 }
 
-.team-role {
+.member-role {
   font-size: 0.9rem;
-  color: #ff4b7d;
-  margin-bottom: 0.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #ff4b7b;
+  margin-bottom: 0.7rem;
 }
 
-.team-bio {
-  font-size: 0.9rem;
-  color: #666;
+.member-tagline {
+  font-size: 0.95rem;
+  color: #717186;
+  max-width: 390px;
+  margin: 0 auto 1.4rem;
+  line-height: 1.6;
+}
+
+/* pills */
+.member-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.member-pill {
+  font-size: 0.78rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: #fff1f7;
+  color: #ff4b7b;
+  font-weight: 500;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .team-section {
+    padding-top: 4rem;
+  }
+
+  .team-title {
+    font-size: 1.6rem;
+  }
+
+  .team-card {
+    padding: 2.1rem 1.6rem 1.7rem;
+  }
+
+  .team-avatar {
+    width: 78px;
+    height: 78px;
+    font-size: 2rem;
+  }
+}
+
+/* simple animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

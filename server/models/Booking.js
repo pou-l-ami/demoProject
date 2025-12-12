@@ -37,6 +37,13 @@ const BookingSchema = new mongoose.Schema(
       enum: ["unpaid", "partial", "paid"],
       default: "unpaid",
     },
+
+    // 🔽 NEW OPTIONAL FIELDS FOR PAYMENT DETAILS
+    paymentMode: { type: String }, // e.g. "Razorpay"
+    transactionId: { type: String }, // e.g. Razorpay payment id
+    razorpayOrderId: { type: String },
+    razorpayPaymentId: { type: String },
+    razorpaySignature: { type: String },
   },
   { timestamps: true }
 );
