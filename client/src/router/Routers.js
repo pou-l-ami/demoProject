@@ -13,6 +13,7 @@ import SearchResultList from "../pages/SearchResultList";
 import Gallery from "../pages/Gallery";
 import Team from "../pages/Team";
 import BuyProducts from "../pages/user/BuyProducts.jsx";
+import EventRecommendation from "../pages/EventRecommendation.jsx";
 
 import AdminLayout from "../pages/admin/AdminLayout";
 import AdminDashboard from "../pages/admin/AdminDashboard";
@@ -42,6 +43,7 @@ const Routers = () => {
       <Route path="/events/:id" element={<EventDetails />} />
       <Route path="/events/search" element={<SearchResultList />} />
       <Route path="/notification" element={<Notification />} />
+      <Route path="/recommendation" element={<EventRecommendation />} />
 
       {/* ✅ Buy Products – user must be logged in (any role) */}
       <Route

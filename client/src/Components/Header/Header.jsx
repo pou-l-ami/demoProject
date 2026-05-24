@@ -10,7 +10,7 @@ import "./Header.css";
 const nav__links = [
   { path: "/home", display: "Home" },
   { path: "/about", display: "About" },
-  { path: "/events", display: "Events" },
+  { path: "/events", display: "Events (AI Recommend)" },
   { path: "/gallery", display: "Gallery" },
   { path: "/team", display: "Team" },
   { path: "/buy-products", display: "Buy Products" },
@@ -26,6 +26,21 @@ const Header = () => {
       return null;
     }
   });
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark-theme");
+    } else {
+      document.body.classList.remove("dark-theme");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -91,6 +106,14 @@ const Header = () => {
   const username =
     auth?.user?.username || auth?.user?.name || auth?.user?.email;
 
+  const isAdmin = auth?.role === "admin";
+  const isUser = auth?.role === "user";
+  const linksToRender = isAdmin
+    ? [...nav__links, { path: "/admin", display: "Admin Panel" }]
+    : isUser
+    ? [...nav__links, { path: "/user/bookings", display: "My Bookings" }]
+    : nav__links;
+
   return (
     <header className="header">
       <div
@@ -108,7 +131,7 @@ const Header = () => {
 
       <nav className={`navbar__links ${isMenuOpen ? "active" : ""}`}>
         <ul>
-          {nav__links.map((item, index) => (
+          {linksToRender.map((item, index) => (
             <li
               className="navbar__links__item"
               key={index}
@@ -128,6 +151,9 @@ const Header = () => {
       </nav>
 
       <div className="navbar__right__btns">
+        <button className="dark-theme-toggle" onClick={toggleTheme} title="Toggle Theme" style={{ background: "transparent", border: "none", fontSize: "2.2rem", cursor: "pointer", marginRight: "2rem", display: "inline-flex", alignItems: "center" }}>
+          {theme === "light" ? "🌙" : "☀️"}
+        </button>
         {isLoggedIn ? (
           <>
             {username && (

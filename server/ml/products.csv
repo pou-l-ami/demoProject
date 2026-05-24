@@ -1,0 +1,37 @@
+product_name,category,city,rental_price,rating,image
+Premium Banquet Chair,Seating,Mumbai,150,4.8,/product-images/banquet-chair.png
+Luxury Dining Table,Tables,Mumbai,1200,4.7,/product-images/dining-table.png
+Chafing Serving Dishes,Catering,Mumbai,500,4.6,/product-images/chafing-dishes.png
+LED Dance Floor Lights,Lighting,Mumbai,3500,4.9,/product-images/led-lights.png
+Crystal Centerpieces,Decoration,Mumbai,800,4.5,/product-images/centerpieces.png
+DJ Lighting Sound Rig,Sound,Mumbai,8500,4.8,/product-images/dj-light.png
+Premium Banquet Chair,Seating,Delhi,180,4.7,/product-images/banquet-chair.png
+Luxury Dining Table,Tables,Delhi,1400,4.6,/product-images/dining-table.png
+Chafing Serving Dishes,Catering,Delhi,550,4.5,/product-images/chafing-dishes.png
+LED Dance Floor Lights,Lighting,Delhi,4000,4.8,/product-images/led-lights.png
+Flower Garland Strings,Decoration,Delhi,1200,4.7,/product-images/flower-garlands.png
+Stage Decorative Pillars,Decoration,Delhi,3000,4.6,/product-images/pillars.png
+Premium Banquet Chair,Seating,Bangalore,160,4.8,/product-images/banquet-chair.png
+Luxury Dining Table,Tables,Bangalore,1300,4.7,/product-images/dining-table.png
+Chafing Serving Dishes,Catering,Bangalore,520,4.6,/product-images/chafing-dishes.png
+LED Dance Floor Lights,Lighting,Bangalore,3800,4.9,/product-images/led-lights.png
+Drink Beverage Cooler,Catering,Bangalore,1500,4.4,/product-images/drink-cooler.png
+Stage Backdrop Frame,Decoration,Bangalore,6000,4.7,/product-images/stage-backdrop.png
+Premium Banquet Chair,Seating,Kolkata,140,4.8,/product-images/banquet-chair.png
+Luxury Dining Table,Tables,Kolkata,1100,4.7,/product-images/dining-table.png
+Chafing Serving Dishes,Catering,Kolkata,480,4.6,/product-images/chafing-dishes.png
+LED Dance Floor Lights,Lighting,Kolkata,3200,4.9,/product-images/led-lights.png
+Crystal Centerpieces,Decoration,Kolkata,750,4.5,/product-images/centerpieces.png
+DJ Lighting Sound Rig,Sound,Kolkata,7800,4.8,/product-images/dj-light.png
+Premium Banquet Chair,Seating,New York,15,4.8,/product-images/banquet-chair.png
+Luxury Dining Table,Tables,New York,120,4.7,/product-images/dining-table.png
+Chafing Serving Dishes,Catering,New York,50,4.6,/product-images/chafing-dishes.png
+LED Dance Floor Lights,Lighting,New York,350,4.9,/product-images/led-lights.png
+Crystal Centerpieces,Decoration,New York,80,4.5,/product-images/centerpieces.png
+DJ Lighting Sound Rig,Sound,New York,850,4.8,/product-images/dj-light.png
+Premium Banquet Chair,Seating,Chicago,12,4.8,/product-images/banquet-chair.png
+Luxury Dining Table,Tables,Chicago,100,4.7,/product-images/dining-table.png
+Chafing Serving Dishes,Catering,Chicago,45,4.6,/product-images/chafing-dishes.png
+LED Dance Floor Lights,Lighting,Chicago,300,4.9,/product-images/led-lights.png
+Drink Beverage Cooler,Catering,Chicago,150,4.4,/product-images/drink-cooler.png
+Stage Backdrop Frame,Decoration,Chicago,600,4.7,/product-images/stage-backdrop.png

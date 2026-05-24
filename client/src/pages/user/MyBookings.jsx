@@ -114,6 +114,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "../../styles/user-dashboard.css";
 import "../../styles/admin-tables.css";
 
@@ -172,6 +173,65 @@ const MyBookings = () => {
 
       const order = orderRes.data.data;
 
+      // 🛑 OFFLINE MOCK BYPASS: If Razorpay API Key is not configured, complete payment programmatically!
+      const rzpKey = process.env.REACT_APP_RAZORPAY_KEY_ID;
+      if (!rzpKey || rzpKey === "undefined" || rzpKey.trim() === "" || order.id.startsWith("order_mock_")) {
+        console.log("⚠️ Razorpay API key is missing or we are in Demo Mode. Simulating instant mock payment checkout.");
+        
+        Swal.fire({
+          title: "Offline Payment Simulation",
+          text: "Razorpay Key ID is not configured in .env. We will simulate a successful mock checkout instantly for you!",
+          icon: "info",
+          showCancelButton: true,
+          confirmButtonColor: "#34d399",
+          cancelButtonColor: "#6c757d",
+          confirmButtonText: "Execute Mock Payment",
+          cancelButtonText: "Cancel Checkout"
+        }).then(async (choice) => {
+          if (choice.isConfirmed) {
+            try {
+              Swal.fire({
+                title: "Processing...",
+                text: "Verifying mock payment hashes...",
+                allowOutsideClick: false,
+                didOpen: () => {
+                  Swal.showLoading();
+                }
+              });
+
+              await axios.post(
+                `${BACKEND_URL}/api/v1/payments/verify`,
+                {
+                  razorpay_order_id: order.id,
+                  razorpay_payment_id: "pay_mock_" + Math.random().toString(36).substring(2, 10),
+                  razorpay_signature: "sig_mock_" + Math.random().toString(36).substring(2, 10),
+                  bookingId: booking._id,
+                },
+                { withCredentials: true }
+              );
+
+              Swal.fire({
+                icon: "success",
+                title: "Payment Successful!",
+                text: "Your booking is now fully paid and confirmed.",
+                confirmButtonColor: "#10b981"
+              });
+
+              fetchBookings(); // refresh table
+            } catch (err) {
+              console.error("Mock verification failed:", err);
+              Swal.fire({
+                icon: "error",
+                title: "Payment Error",
+                text: "Mock payment verification failed.",
+                confirmButtonColor: "#ef4444"
+              });
+            }
+          }
+        });
+        return;
+      }
+
       const loaded = await loadRazorpay();
       if (!loaded) {
         alert("Razorpay SDK failed to load. Check your connection.");
@@ -179,7 +239,7 @@ const MyBookings = () => {
       }
 
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+        key: rzpKey,
         amount: order.amount,
         currency: order.currency,
         name: "Event Management",
@@ -197,11 +257,28 @@ const MyBookings = () => {
               },
               { withCredentials: true }
             );
-            alert("Payment successful!");
+            Swal.fire({
+              icon: "success",
+              title: "Payment Successful!",
+              text: "Your payment has been successfully captured and verified.",
+              confirmButtonColor: "#10b981"
+            });
             fetchBookings(); // refresh table
           } catch (err) {
             console.error("Payment verification failed:", err);
-            alert("Payment verification failed.");
+            Swal.fire({
+              icon: "error",
+              title: "Verification Failed",
+              text: "Payment captured but signature verification failed.",
+              confirmButtonColor: "#ef4444"
+            });
+          }
+        },
+        modal: {
+          ondismiss: function () {
+            // Restore scroll lock if any
+            document.body.style.overflow = "unset";
+            document.documentElement.style.overflow = "unset";
           }
         },
         prefill: {
@@ -217,10 +294,19 @@ const MyBookings = () => {
       rzp.open();
     } catch (error) {
       console.error("handlePayNow error:", error);
-      alert(
-        error.response?.data?.message ||
-          "Unable to initiate payment. Try again later."
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Initiate Failed",
+        text: error.response?.data?.message || "Unable to initiate payment. Try again later.",
+        confirmButtonColor: "#ef4444"
+      });
+      // Force unlock scroll on error
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
+    } finally {
+      // Release scroll locking automatically
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     }
   };
 

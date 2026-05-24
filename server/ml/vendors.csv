@@ -1,0 +1,37 @@
+service_name,service_type,city,package_price,rating,image
+Gourmet Feast Caterers,Catering,Mumbai,50000,4.8,/event-images/event-img01.jpg
+Spicy Bites Catering,Catering,Mumbai,35000,4.4,/event-images/event-img02.jpg
+Royal Feast Banquet Buffet,Catering,Mumbai,95000,4.9,/event-images/event-img03.jpg
+Elite Dream Decorators,Decoration,Mumbai,40000,4.7,/event-images/event-img04.jpg
+Vibrant Floral Decors,Decoration,Mumbai,25000,4.3,/event-images/event-img05.jpg
+Sparkling Lights & Themes,Decoration,Mumbai,65000,4.8,/event-images/event-img06.jpg
+Capital Catering Co,Catering,Delhi,60000,4.7,/event-images/event-img07.jpg
+Delhi Delights Buffet,Catering,Delhi,40000,4.5,/event-images/event-img08.jpg
+Shahi Darbar Catering,Catering,Delhi,110000,4.9,/event-images/event-img09.jpg
+Red Carpet Decorators,Decoration,Delhi,50000,4.6,/event-images/event-img10.jpg
+Traditional Touch Decors,Decoration,Delhi,30000,4.2,/event-images/event-img11.jpg
+Grand Theme Events Delhi,Decoration,Delhi,80000,4.8,/event-images/event-img12.jpg
+Silicon Valley Caterers,Catering,Bangalore,55000,4.6,/event-images/event-img13.jpg
+Southern Spices Dining,Catering,Bangalore,30000,4.4,/event-images/event-img14.jpg
+The Regal Buffet Bangalore,Catering,Bangalore,85000,4.8,/event-images/event-img15.jpg
+Green Floral Bangalore,Decoration,Bangalore,35000,4.5,/event-images/event-img01.jpg
+Neon Theme Stage Decorators,Decoration,Bangalore,60000,4.7,/event-images/event-img02.jpg
+Minimalist Chic Event Decors,Decoration,Bangalore,20000,4.1,/event-images/event-img03.jpg
+Bengali Royal Caterers,Catering,Kolkata,45000,4.9,/event-images/event-img04.jpg
+Kolkata Spice Buffet,Catering,Kolkata,30000,4.3,/event-images/event-img05.jpg
+Rosogolla Feast Services,Catering,Kolkata,75000,4.8,/event-images/event-img06.jpg
+Elegance Weddings Kolkata,Decoration,Kolkata,50000,4.7,/event-images/event-img07.jpg
+Artistic Theme Designers,Decoration,Kolkata,25000,4.2,/event-images/event-img08.jpg
+Sweet Orchid Floral Decors,Decoration,Kolkata,60000,4.6,/event-images/event-img09.jpg
+Manhattan Elite Catering,Catering,New York,150000,4.9,/event-images/event-img10.jpg
+Broadway Banquet Caterers,Catering,New York,90000,4.6,/event-images/event-img11.jpg
+Gourmet NYC Food Trucks,Catering,New York,50000,4.4,/event-images/event-img12.jpg
+Fifth Avenue Wedding Decors,Decoration,New York,120000,4.9,/event-images/event-img13.jpg
+Brooklyn Industrial Decors,Decoration,New York,70000,4.5,/event-images/event-img14.jpg
+Modern Neon Event Stylists,Decoration,New York,45000,4.3,/event-images/event-img15.jpg
+Windy City Gourmet Food,Catering,Chicago,80000,4.7,/event-images/event-img01.jpg
+Navy Pier Buffet Services,Catering,Chicago,130000,4.8,/event-images/event-img02.jpg
+Chicago Local Bites,Catering,Chicago,40000,4.3,/event-images/event-img03.jpg
+Lakeshore Event Designers,Decoration,Chicago,60000,4.6,/event-images/event-img04.jpg
+Magnificent Mile Decors,Decoration,Chicago,100000,4.9,/event-images/event-img05.jpg
+Classy Floral Chicago,Decoration,Chicago,35000,4.2,/event-images/event-img06.jpg
