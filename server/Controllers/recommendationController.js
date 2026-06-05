@@ -132,8 +132,8 @@ export const getRecommendations = async (req, res) => {
 
       const simScore = calculateTextSimilarity(eventType, `${v.venue_name} ${v.city}`);
       const ratingScore = vRating / 5.0;
-      const budgetScore = vPrice <= venue_budget ? 1.0 : venue_budget / vPrice;
-      const capacityScore = vCapacity < guestCountVal ? 0.0 : 1.0 - (vCapacity - guestCountVal) / vCapacity;
+      const budgetScore = vPrice <= venue_budget ? (1.0 - 0.15 * ((venue_budget - vPrice) / venue_budget)) : venue_budget / vPrice;
+      const capacityScore = vCapacity < guestCountVal ? 0.0 : Math.max(0.9, guestCountVal / vCapacity);
 
       const finalScore = (
         0.15 * ratingScore +
@@ -181,7 +181,7 @@ export const getRecommendations = async (req, res) => {
 
       const simScore = calculateTextSimilarity(eventType, `${c.service_name} catering`);
       const ratingScore = cRating / 5.0;
-      const budgetScore = cPrice <= catering_budget ? 1.0 : catering_budget / cPrice;
+      const budgetScore = cPrice <= catering_budget ? (1.0 - 0.15 * ((catering_budget - cPrice) / catering_budget)) : catering_budget / cPrice;
 
       const finalScore = (
         0.25 * ratingScore +
@@ -218,7 +218,7 @@ export const getRecommendations = async (req, res) => {
 
       const simScore = calculateTextSimilarity(eventType, `${d.service_name} decoration flowers lights`);
       const ratingScore = dRating / 5.0;
-      const budgetScore = dPrice <= decoration_budget ? 1.0 : decoration_budget / dPrice;
+      const budgetScore = dPrice <= decoration_budget ? (1.0 - 0.15 * ((decoration_budget - dPrice) / decoration_budget)) : decoration_budget / dPrice;
 
       const finalScore = (
         0.25 * ratingScore +
@@ -251,7 +251,7 @@ export const getRecommendations = async (req, res) => {
 
       const simScore = calculateTextSimilarity(eventType, `${p.product_name} ${p.category}`);
       const ratingScore = pRating / 5.0;
-      const budgetScore = pPrice <= product_budget ? 1.0 : product_budget / pPrice;
+      const budgetScore = pPrice <= product_budget ? (1.0 - 0.15 * ((product_budget - pPrice) / product_budget)) : product_budget / pPrice;
 
       const finalScore = (
         0.25 * ratingScore +
