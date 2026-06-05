@@ -185,6 +185,8 @@ export const login = async (req, res)=>{
             
             return res.cookie('accessToken', token, {
                 httpOnly: true,
+                secure: true,
+                sameSite: "none",
                 expiresIn: 15 * 24 * 60 * 60 * 1000 // 15 days
             }).status(200).json({
                 status: "success", 
@@ -232,6 +234,8 @@ export const login = async (req, res)=>{
         // Setting token in cookies
         return res.cookie('accessToken', token, {
             httpOnly: true,
+            secure: true,
+            sameSite: "none",
             expiresIn: 15 * 24 * 60 * 60 * 1000 // 15 days
         }).status(200).json({
             status: "success", 
