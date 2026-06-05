@@ -118,6 +118,12 @@ export const getRecommendations = async (req, res) => {
       v_filtered = v_capacity_filtered;
     }
 
+    // Budget filtering: if any venues are under the allocated venue budget, only keep those
+    const v_under_budget = v_filtered.filter((v) => Number(v.price_per_day) <= venue_budget);
+    if (v_under_budget.length > 0) {
+      v_filtered = v_under_budget;
+    }
+
     // Score venues
     const venuesWithScores = v_filtered.map((v) => {
       const vCapacity = Number(v.capacity);
@@ -126,13 +132,13 @@ export const getRecommendations = async (req, res) => {
 
       const simScore = calculateTextSimilarity(eventType, `${v.venue_name} ${v.city}`);
       const ratingScore = vRating / 5.0;
-      const budgetScore = vPrice <= venue_budget ? 1.0 : Math.max(0.0, 1.0 - (vPrice - venue_budget) / venue_budget);
+      const budgetScore = vPrice <= venue_budget ? 1.0 : venue_budget / vPrice;
       const capacityScore = vCapacity < guestCountVal ? 0.0 : 1.0 - (vCapacity - guestCountVal) / vCapacity;
 
       const finalScore = (
-        0.30 * ratingScore +
-        0.30 * budgetScore +
-        0.20 * capacityScore +
+        0.15 * ratingScore +
+        0.50 * budgetScore +
+        0.15 * capacityScore +
         0.20 * simScore
       );
 
@@ -163,18 +169,24 @@ export const getRecommendations = async (req, res) => {
       caterers = vendors.filter((v) => v.service_type.toLowerCase() === "catering");
     }
 
+    // Budget filtering for caterers
+    const c_under_budget = caterers.filter((c) => Number(c.package_price) <= catering_budget);
+    if (c_under_budget.length > 0) {
+      caterers = c_under_budget;
+    }
+
     const caterersWithScores = caterers.map((c) => {
       const cPrice = Number(c.package_price);
       const cRating = Number(c.rating);
 
       const simScore = calculateTextSimilarity(eventType, `${c.service_name} catering`);
       const ratingScore = cRating / 5.0;
-      const budgetScore = cPrice <= catering_budget ? 1.0 : Math.max(0.0, 1.0 - (cPrice - catering_budget) / catering_budget);
+      const budgetScore = cPrice <= catering_budget ? 1.0 : catering_budget / cPrice;
 
       const finalScore = (
-        0.40 * ratingScore +
-        0.30 * budgetScore +
-        0.30 * simScore
+        0.25 * ratingScore +
+        0.50 * budgetScore +
+        0.25 * simScore
       );
 
       return {
@@ -194,18 +206,24 @@ export const getRecommendations = async (req, res) => {
       decorators = vendors.filter((v) => v.service_type.toLowerCase() === "decoration");
     }
 
+    // Budget filtering for decorators
+    const d_under_budget = decorators.filter((d) => Number(d.package_price) <= decoration_budget);
+    if (d_under_budget.length > 0) {
+      decorators = d_under_budget;
+    }
+
     const decoratorsWithScores = decorators.map((d) => {
       const dPrice = Number(d.package_price);
       const dRating = Number(d.rating);
 
       const simScore = calculateTextSimilarity(eventType, `${d.service_name} decoration flowers lights`);
       const ratingScore = dRating / 5.0;
-      const budgetScore = dPrice <= decoration_budget ? 1.0 : Math.max(0.0, 1.0 - (dPrice - decoration_budget) / decoration_budget);
+      const budgetScore = dPrice <= decoration_budget ? 1.0 : decoration_budget / dPrice;
 
       const finalScore = (
-        0.40 * ratingScore +
-        0.30 * budgetScore +
-        0.30 * simScore
+        0.25 * ratingScore +
+        0.50 * budgetScore +
+        0.25 * simScore
       );
 
       return {
@@ -233,12 +251,12 @@ export const getRecommendations = async (req, res) => {
 
       const simScore = calculateTextSimilarity(eventType, `${p.product_name} ${p.category}`);
       const ratingScore = pRating / 5.0;
-      const budgetScore = pPrice <= product_budget ? 1.0 : Math.max(0.0, 1.0 - (pPrice - product_budget) / product_budget);
+      const budgetScore = pPrice <= product_budget ? 1.0 : product_budget / pPrice;
 
       const finalScore = (
-        0.40 * ratingScore +
-        0.30 * budgetScore +
-        0.30 * simScore
+        0.25 * ratingScore +
+        0.50 * budgetScore +
+        0.25 * simScore
       );
 
       return {
