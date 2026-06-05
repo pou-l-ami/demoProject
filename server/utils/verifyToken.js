@@ -1,7 +1,12 @@
 import jwt from "jsonwebtoken";
 
 export const verifyToken = (req, res, next) => {
-  const token = req.cookies.accessToken;
+  let token = req.cookies.accessToken || req.headers.authorization;
+  
+  if (token && token.startsWith("Bearer ")) {
+    token = token.split(" ")[1];
+  }
+
   if (!token) {
     return res
       .status(401)

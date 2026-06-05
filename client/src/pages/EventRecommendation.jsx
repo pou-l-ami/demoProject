@@ -40,6 +40,22 @@ const getImageUrl = (imagePath) => {
   return imagePath;
 };
 
+const getAuthHeaders = () => {
+  const headers = { "Content-Type": "application/json" };
+  try {
+    const authData = localStorage.getItem("auth");
+    if (authData) {
+      const { token } = JSON.parse(authData);
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+      }
+    }
+  } catch (e) {
+    console.error("Error setting authorization header:", e);
+  }
+  return headers;
+};
+
 const EventRecommendation = () => {
   const navigate = useNavigate();
   // Form State
@@ -109,9 +125,7 @@ const EventRecommendation = () => {
     try {
       const response = await fetch(`${BASE_URL}/api/v1/recommendation`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: getAuthHeaders(),
         body: JSON.stringify({
           budget: Number(budget),
           eventType,
@@ -171,9 +185,7 @@ const EventRecommendation = () => {
     try {
       const response = await fetch(`${BASE_URL}/api/cart/add`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: getAuthHeaders(),
         body: JSON.stringify({ productId, qty: 1 }),
         credentials: "include"
       });
@@ -235,9 +247,7 @@ const EventRecommendation = () => {
     try {
       const response = await fetch(`${BASE_URL}/api/v1/booking`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: getAuthHeaders(),
         body: JSON.stringify({
           eventName: `AI Curated ${eventType} in ${location}`,
           venueName: r.venue.venue_name,
