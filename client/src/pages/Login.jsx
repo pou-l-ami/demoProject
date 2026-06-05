@@ -5,6 +5,7 @@ import axios from "axios";
 import "../styles/login.css";
 import loginImg from "../assets/images/login.png";
 import userIcon from "../assets/images/user.png";
+import { BASE_URL } from "../utils/config.js";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -31,7 +32,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/auth/login",
+        `${BASE_URL}/api/v1/auth/login`,
         {
           email: credentials.email,
           password: credentials.password

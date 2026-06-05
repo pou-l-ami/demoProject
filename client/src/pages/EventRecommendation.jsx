@@ -107,7 +107,7 @@ const EventRecommendation = () => {
     }, 600);
 
     try {
-      const response = await fetch("http://localhost:8000/api/v1/recommendation", {
+      const response = await fetch(`${BASE_URL}/api/v1/recommendation`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -169,7 +169,7 @@ const EventRecommendation = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/cart/add", {
+      const response = await fetch(`${BASE_URL}/api/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -233,7 +233,7 @@ const EventRecommendation = () => {
     const p = recommendations.pricing;
 
     try {
-      const response = await fetch("http://localhost:8000/api/v1/booking", {
+      const response = await fetch(`${BASE_URL}/api/v1/booking`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

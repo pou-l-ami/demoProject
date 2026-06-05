@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/admin-tables.css";
+import { BASE_URL } from "../../utils/config.js";
 
 const statusOptions = ["pending", "confirmed", "cancelled"];
 const paymentOptions = ["unpaid", "partial", "paid"];
@@ -15,7 +16,7 @@ const ViewBookings = () => {
   const loadBookings = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/v1/booking", {
+      const res = await axios.get(`${BASE_URL}/api/v1/booking`, {
         withCredentials: true,
       });
       setBookings(res.data.data || []);
@@ -44,7 +45,7 @@ const ViewBookings = () => {
     try {
       setSavingId(booking._id);
       await axios.put(
-        `http://localhost:8000/api/v1/booking/${booking._id}`,
+        `${BASE_URL}/api/v1/booking/${booking._id}`,
         {
           status: booking.status,
           paymentStatus: booking.paymentStatus,

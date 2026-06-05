@@ -3,6 +3,7 @@ import React from "react";
 import  { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/admin-tables.css";
+import { BASE_URL } from "../../utils/config.js";
 
 const Report = () => {
   const [bookings, setBookings] = useState([]);
@@ -13,7 +14,7 @@ const Report = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:8000/api/v1/booking", {
+        const res = await axios.get(`${BASE_URL}/api/v1/booking`, {
           withCredentials: true,
         });
         setBookings(res.data.data || []);

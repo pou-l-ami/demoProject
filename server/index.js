@@ -17,7 +17,6 @@ import cartRoute from './routes/cart.js';
 import ordersRoute from "./routes/orders.js";
 import paymentsRoute from "./routes/payments.js";
 import recommendationRoute from "./routes/recommendationRoutes.js";
-import { spawn } from "child_process";
 import User from "./models/User.js";
 import Product from "./models/Product.js";
 dotenv.config();
@@ -113,29 +112,4 @@ app.use('/api/v1/recommendation', recommendationRoute);
 app.listen(portNo, () => {
   connect();
   console.log('Server listening on port No ' + portNo);
-  
-  // Spawn Flask service automatically
-  try {
-    console.log('Attempting to auto-spawn Python Flask ML service...');
-    const flaskProcess = spawn('python', [path.join(__dirname, 'ml', 'recommendation.py')]);
-
-    flaskProcess.stdout.on('data', (data) => {
-      console.log(`[Flask ML]: ${data.toString().trim()}`);
-    });
-
-    flaskProcess.stderr.on('data', (data) => {
-      console.log(`[Flask ML Log]: ${data.toString().trim()}`);
-    });
-
-    flaskProcess.on('error', (err) => {
-      console.error('Failed to spawn Flask ML service:', err.message);
-      console.log('Please ensure python is in your PATH and dependencies are installed.');
-    });
-
-    flaskProcess.on('close', (code) => {
-      console.log(`Flask ML process exited with code ${code}`);
-    });
-  } catch (err) {
-    console.error('Error starting Flask process:', err);
-  }
 });

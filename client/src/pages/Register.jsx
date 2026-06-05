@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/register.css"; // path is from src/pages -> src/styles
+import { BASE_URL } from "../utils/config.js";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ const Register = () => {
       // ✅ MUST match your backend:
       // app.use('/api/v1/auth', authRoute)
       const res = await axios.post(
-        "http://localhost:8000/api/v1/auth/register",
+        `${BASE_URL}/api/v1/auth/register`,
         {
           username: formData.username,
           email: formData.email,

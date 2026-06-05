@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/admin-tables.css";
+import { BASE_URL } from "../../utils/config.js";
 
 const ViewPayments = () => {
   const [rows, setRows] = useState([]);
@@ -12,7 +13,7 @@ const ViewPayments = () => {
     const fetchPayments = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:8000/api/v1/booking", {
+        const res = await axios.get(`${BASE_URL}/api/v1/booking`, {
           withCredentials: true,
         });
 

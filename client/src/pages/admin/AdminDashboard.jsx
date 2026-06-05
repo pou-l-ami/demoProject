@@ -1,5 +1,4 @@
 // src/pages/admin/AdminDashboard.jsx
-// src/pages/admin/AdminDashboard.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -10,6 +9,7 @@ import {
   FiDollarSign,
 } from "react-icons/fi";
 import "../../styles/admin-dashboard.css";
+import { BASE_URL } from "../../utils/config.js";
 
 const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]);
@@ -20,7 +20,7 @@ const AdminDashboard = () => {
     const fetchBookings = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:8000/api/v1/booking", {
+        const res = await axios.get(`${BASE_URL}/api/v1/booking`, {
           withCredentials: true,
         });
         setBookings(res.data.data || []);
